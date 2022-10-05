@@ -2,6 +2,8 @@
 
 pragma solidity >=0.7.0 <0.9.0;
 
+import "@openzeppelin/contracts/utils/Strings.sol";
+
 contract MyBallot {
 
     // STORAGE VARIABLES
@@ -21,7 +23,7 @@ contract MyBallot {
 
     mapping(address => Voter) private voters;
 
-    Candidate[] private candidates;
+    Candidate[] public candidates;
 
     uint private totalVotesCounter;
 
@@ -54,7 +56,6 @@ contract MyBallot {
 
     modifier voteModifierBefore(address voterAddress) {
         getTotalVotesCounterReachedRequire();
-        getRightToVoteRequire(voterAddress);
         getVoterVotedRequire(voterAddress);
         _;        
     }
@@ -193,7 +194,9 @@ contract MyBallot {
                 tieCandidatesListNames = concatenateStrings(tieCandidatesListNames,tieCandidatesList[indexCandidate]);
             }
             
-            string memory tieMessage = concatenateStrings("There is a tie on Ballot. You should start a new ballot with tie candidates:", tieCandidatesListNames);
+            string memory tieMessage = concatenateStrings("There is a TIE on Ballot with this amount of votes:", Strings.toString(winningVoteCount));
+            tieMessage = concatenateStrings(tieMessage, ". You should start a new ballot with tie candidates:");
+            tieMessage = concatenateStrings(tieMessage, tieCandidatesListNames);
         
             getTieRequire(!isTie, tieMessage);
         } else {

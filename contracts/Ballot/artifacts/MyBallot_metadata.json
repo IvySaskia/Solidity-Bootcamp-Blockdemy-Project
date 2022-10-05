@@ -22,6 +22,30 @@
 				"type": "constructor"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "candidates",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "nameProject",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "votesCount",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "getCandidatesListName",
 				"outputs": [
@@ -116,12 +140,20 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/Ballot/Ballot.sol": {
-			"keccak256": "0xc57f54083dd50676b0800d7aa96d609dc3408e340353b80eb91a7a3aa5691d92",
+		"@openzeppelin/contracts/utils/Strings.sol": {
+			"keccak256": "0xaf159a8b1923ad2a26d516089bceca9bdeaeacd04be50983ea00ba63070f08a3",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6eb718c50837eb2d705c60bd63dc563d6818b2f9a934cdb406386ddb8a604151",
-				"dweb:/ipfs/QmQvF3X9ReyJxGQYvrBq7Ao2R3fhQbw8jAriCVxiBK24T9"
+				"bzz-raw://6f2cf1c531122bc7ca96b8c8db6a60deae60441e5223065e792553d4849b5638",
+				"dweb:/ipfs/QmPBdJmBBABMDCfyDjCbdxgiqRavgiSL88SYPGibgbPas9"
+			]
+		},
+		"contracts/Ballot/Ballot.sol": {
+			"keccak256": "0x702d1207b9fdbb7f0f029b342402cdeff0608e0ed16acb893f98d290d201f9d0",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0499bd16f50a15f69443cc38d28042d8c7bb649288c6f5dac491e34456ca44c4",
+				"dweb:/ipfs/QmPaXAtxb6odXxMamwvgpqvxnQHE3iaA56GLb5yaqouVGh"
 			]
 		}
 	},
