@@ -61,7 +61,7 @@ contract MyBallot {
         _;
     }
 
-    modifier voteModifier(address voterAddress) {
+    modifier voteModifierBefore(address voterAddress) {
         getTotalVotesCounterReachedRequire();
         require(
             areYouHaveRigthToVote(), 
@@ -88,6 +88,13 @@ contract MyBallot {
         );
     }
 
+    function isCandidateExistRequire(bool isExist) private pure {
+        return require(
+            isExist,
+            "Candidate you sent does not exist"
+        );
+    }
+
 
     // FUNCTIONS
 
@@ -105,21 +112,20 @@ contract MyBallot {
         voters[voterAddress].canVote = true;
     }
 
-    function vote(string memory _nameProject) public voteModifier(msg.sender) {
+    function vote(string memory _nameProject) public voteModifierBefore(msg.sender) {
         Voter storage sender = voters[msg.sender]; // this is to show the usage of storage | I could use directly voters[msg.sender].hasVoted
+        bool isCandidateExist;
         
         for (uint index = 0; index < candidates.length; index++) {
             if (stringEqualTo(candidates[index].nameProject, _nameProject)) {
                 candidates[index].votesCount++;
                 sender.hasVoted = true;
                 totalVotesCounter++;
+                isCandidateExist = true;
             }
         }
 
-        require(
-            sender.hasVoted,
-            "Candidate you sent does not exist"
-        );
+        isCandidateExistRequire(sender.hasVoted);
     }
 
     function getWinnerName() public view returns (string memory winnerName, address) {
