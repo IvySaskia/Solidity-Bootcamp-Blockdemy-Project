@@ -19,14 +19,13 @@ contract MyBallot {
 
     address private contractOwner;
 
-    mapping(address => Voter) public voters;
+    mapping(address => Voter) private voters;
 
-    Candidate[] public candidates;
+    Candidate[] private candidates;
 
     uint private totalVotesCounter;
 
     uint private maxVotes;
-
 
 
     // CONSTRUCTOR
@@ -38,41 +37,27 @@ contract MyBallot {
     }
 
 
-
     // MODIFIERS
 
     modifier isContractOwnerAddCandidate() {
-        require(
-            areYouContractOwner(),
-            "Only the contract owner can add candidates."
-        );
+        getContractOwnerAddCandidateRequire();
         _;
     }
 
     modifier giveRightToVoteModifier(address voterAddress) {
         getTotalVotesCounterReachedRequire();
-        require(
-            areYouContractOwner(),
-            "Only the contract owner can give right to vote."
-        );
-        require(
-            !voters[voterAddress].canVote,
-            "Voter have already has right to vote."
-        );
+        getYouContractOwnerRequire();
+        getRightToVoteRequire(voterAddress);
         getVoterVotedRequire(voterAddress);
         _;
     }
 
     modifier voteModifierBefore(address voterAddress) {
         getTotalVotesCounterReachedRequire();
-        require(
-            areYouHaveRigthToVote(), 
-            "You have not right to vote"
-        );
+        getRightToVoteRequire(voterAddress);
         getVoterVotedRequire(voterAddress);
         _;        
     }
-
 
 
     // REQUIRES
@@ -91,13 +76,47 @@ contract MyBallot {
         );
     }
 
-    function isCandidateExistRequire(bool isExist) private pure {
+    function getCandidateExistRequire(bool isExist) private pure {
         return require(
             isExist,
             "Candidate you sent does not exist"
         );
     }
 
+    function getTieRequire(bool isTie, string memory tieMessage) private pure {
+        return require(
+            isTie,
+            tieMessage
+        );
+    }
+
+    function getYouHaveRightToVoteRequire() private view {
+        return require(
+            areYouHaveRigthToVote(), 
+            "You have not right to vote"
+        );
+    }
+
+    function getRightToVoteRequire(address voterAddress) private view {
+        return require(
+            !voters[voterAddress].canVote,
+            "Voter have already has right to vote."
+        );
+    }
+
+    function getYouContractOwnerRequire() private view {
+        return require(
+            areYouContractOwner(),
+            "Only the contract owner can give right to vote."
+        );
+    }
+
+    function getContractOwnerAddCandidateRequire() private view {
+        return require(
+            areYouContractOwner(),
+            "Only the contract owner can add candidates."
+        );
+    }
 
 
     // FUNCTIONS
@@ -129,16 +148,17 @@ contract MyBallot {
             }
         }
 
-        isCandidateExistRequire(isCandidateExist);
+        getCandidateExistRequire(isCandidateExist);
     }
 
-    function getWinnerName() public view returns (string memory winnerName, address) {
-        (Candidate memory winningCandidate) = getWinningCandidate();
+    function getWinnerBallot() public view returns (string memory winnerName, uint amountWinningVotes, address contractAddress) {
+        (Candidate memory winningCandidate) = getWinnerCandidate();
         winnerName = winningCandidate.nameProject;
-        return (winnerName, getContractAddress());
+        amountWinningVotes = winningCandidate.votesCount;
+        contractAddress = getContractAddress();
     }
 
-    function getWinningCandidate() public view returns (Candidate memory winningCandidate) {        
+    function getWinnerCandidate() private view returns (Candidate memory winningCandidate) {        
         uint winningVoteCount;
         uint winningCandidateIndex;
 
@@ -175,10 +195,7 @@ contract MyBallot {
             
             string memory tieMessage = concatenateStrings("There is a tie on Ballot. You should start a new ballot with tie candidates:", tieCandidatesListNames);
         
-            require(
-                false,
-                tieMessage
-            );
+            getTieRequire(!isTie, tieMessage);
         } else {
             winningCandidate = candidates[winningCandidateIndex];
         }
@@ -211,23 +228,18 @@ contract MyBallot {
         return voters[voterAddress].canVote;
     }
 
-    function areYouVoted() private view returns (bool) {
-        return getVoterVoted(msg.sender);
-    }
-
     function getVoterVoted(address voterAddress) private view returns (bool) {
         return voters[voterAddress].hasVoted;
     }
 
 
-
-    // OTHER FUNCTIONS AS UTILS
+    // OTHER FUNCTIONS
 
     function stringEqualTo(string memory s1, string memory s2) private pure returns (bool) {
         return keccak256(abi.encode(s1)) == keccak256(abi.encode(s2));
     }
 
-    function concatenateStrings(string memory s1, string memory s2) public pure returns (string memory) {
+    function concatenateStrings(string memory s1, string memory s2) private pure returns (string memory) {
         return string(abi.encodePacked(s1, " " , s2));
     }
 }
