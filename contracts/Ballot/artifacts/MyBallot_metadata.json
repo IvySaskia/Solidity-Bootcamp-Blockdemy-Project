@@ -214,11 +214,11 @@
 	},
 	"sources": {
 		"contracts/Ballot/Ballot.sol": {
-			"keccak256": "0x1a6b2b00953a76f9cdf59ea59f90cfb6c9df4002fa2347713f36f80f5568551a",
+			"keccak256": "0x060dd83adb6485bee856abc65c1aa9f6a8accd61e93904bfc39c8091ba6fe14e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e4e70140de2b63567ab8ddcf8936a0ec37b33ba6b3c37943b3c88c43ba3f721a",
-				"dweb:/ipfs/QmUovZSThjTWjNw2nM6hQN7WpoAsuyAdqygUMfoyumvGKM"
+				"bzz-raw://a2284bf43bd81dc8da9c3b4d29e486f52f65ab04b808be0095b17ea9d40cb66e",
+				"dweb:/ipfs/QmUvLbKC7Fa7JHDNYN9AoFnNSJhzBbLSc2ZZr4EWUHKbzy"
 			]
 		}
 	},

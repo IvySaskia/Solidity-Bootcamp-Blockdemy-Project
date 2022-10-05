@@ -125,7 +125,7 @@ contract MyBallot {
             }
         }
 
-        isCandidateExistRequire(sender.hasVoted);
+        isCandidateExistRequire(isCandidateExist);
     }
 
     function getWinnerName() public view returns (string memory winnerName, address) {
