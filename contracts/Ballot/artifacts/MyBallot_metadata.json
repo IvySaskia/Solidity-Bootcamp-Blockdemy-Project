@@ -22,54 +22,6 @@
 				"type": "constructor"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "candidates",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "nameProject",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "votesCount",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "s1",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "s2",
-						"type": "string"
-					}
-				],
-				"name": "concatenateStrings",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "pure",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "getCandidatesListName",
 				"outputs": [
@@ -84,7 +36,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "getWinnerName",
+				"name": "getWinnerBallot",
 				"outputs": [
 					{
 						"internalType": "string",
@@ -92,34 +44,14 @@
 						"type": "string"
 					},
 					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "getWinningCandidate",
-				"outputs": [
+						"internalType": "uint256",
+						"name": "amountWinningVotes",
+						"type": "uint256"
+					},
 					{
-						"components": [
-							{
-								"internalType": "string",
-								"name": "nameProject",
-								"type": "string"
-							},
-							{
-								"internalType": "uint256",
-								"name": "votesCount",
-								"type": "uint256"
-							}
-						],
-						"internalType": "struct MyBallot.Candidate",
-						"name": "winningCandidate",
-						"type": "tuple"
+						"internalType": "address",
+						"name": "contractAddress",
+						"type": "address"
 					}
 				],
 				"stateMutability": "view",
@@ -155,35 +87,6 @@
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "voters",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "nameVoter",
-						"type": "string"
-					},
-					{
-						"internalType": "bool",
-						"name": "canVote",
-						"type": "bool"
-					},
-					{
-						"internalType": "bool",
-						"name": "hasVoted",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -214,11 +117,11 @@
 	},
 	"sources": {
 		"contracts/Ballot/Ballot.sol": {
-			"keccak256": "0x060dd83adb6485bee856abc65c1aa9f6a8accd61e93904bfc39c8091ba6fe14e",
+			"keccak256": "0xc57f54083dd50676b0800d7aa96d609dc3408e340353b80eb91a7a3aa5691d92",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a2284bf43bd81dc8da9c3b4d29e486f52f65ab04b808be0095b17ea9d40cb66e",
-				"dweb:/ipfs/QmUvLbKC7Fa7JHDNYN9AoFnNSJhzBbLSc2ZZr4EWUHKbzy"
+				"bzz-raw://6eb718c50837eb2d705c60bd63dc563d6818b2f9a934cdb406386ddb8a604151",
+				"dweb:/ipfs/QmQvF3X9ReyJxGQYvrBq7Ao2R3fhQbw8jAriCVxiBK24T9"
 			]
 		}
 	},
