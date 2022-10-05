@@ -123,19 +123,14 @@ contract MyBallot {
     }
 
     function getWinnerName() public view returns (string memory winnerName, address) {
-        (uint winningProposal, bool isTie, string memory str) = getWinningCandidate();
-        string memory tieMessage = concatenateStrings("There is a tie on Ballot. You should start a new ballot with tie candidates:", str);
-        
-        require(
-            !isTie,
-            tieMessage
-        );
-        winnerName = candidates[winningProposal].nameProject;
+        (Candidate memory winningCandidate) = getWinningCandidate();
+        winnerName = winningCandidate.nameProject;
         return (winnerName, getContractAddress());
     }
 
-    function getWinningCandidate() public view returns (uint winningProposal, bool, string memory) {        
+    function getWinningCandidate() public view returns (Candidate memory winningCandidate) {        
         uint winningVoteCount;
+        uint winningCandidateIndex;
 
         uint candidatesLength = candidates.length;
         
@@ -147,7 +142,7 @@ contract MyBallot {
         for (uint indexCandidate = 0; indexCandidate < candidatesLength; indexCandidate++) {
             if (candidates[indexCandidate].votesCount > winningVoteCount) {
                 winningVoteCount = candidates[indexCandidate].votesCount;
-                winningProposal = indexCandidate;
+                winningCandidateIndex = indexCandidate;
                 if (isTie) {
                     isTie = false;
                     tieCandidatesListIndex = 0;
@@ -162,13 +157,21 @@ contract MyBallot {
             }            
         }
 
+
         if (isTie) {
             for (uint indexCandidate = 0; indexCandidate < tieCandidatesList.length; indexCandidate++) {
                 tieCandidatesListNames = concatenateStrings(tieCandidatesListNames,tieCandidatesList[indexCandidate]);
             }
+            
+            string memory tieMessage = concatenateStrings("There is a tie on Ballot. You should start a new ballot with tie candidates:", tieCandidatesListNames);
+        
+            require(
+                false,
+                tieMessage
+            );
+        } else {
+            winningCandidate = candidates[winningCandidateIndex];
         }
-
-        return (winningProposal, isTie, tieCandidatesListNames);
     }
 
     function getCandidatesListName() public view returns (string[] memory) {
@@ -212,10 +215,6 @@ contract MyBallot {
     function stringEqualTo(string memory s1, string memory s2) private pure returns (bool) {
         return keccak256(abi.encode(s1)) == keccak256(abi.encode(s2));
     }
-
-    // function test(string memory s1, string memory s2) public pure returns (string memory resul) {
-    //     resul = string.concat(s1, s2);
-    // }
 
     function concatenateStrings(string memory s1, string memory s2) public pure returns (string memory) {
         return string(abi.encodePacked(s1, " " , s2));

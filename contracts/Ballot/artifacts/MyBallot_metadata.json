@@ -105,19 +105,21 @@
 				"name": "getWinningCandidate",
 				"outputs": [
 					{
-						"internalType": "uint256",
-						"name": "winningProposal",
-						"type": "uint256"
-					},
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					},
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
+						"components": [
+							{
+								"internalType": "string",
+								"name": "nameProject",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "votesCount",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct MyBallot.Candidate",
+						"name": "winningCandidate",
+						"type": "tuple"
 					}
 				],
 				"stateMutability": "view",
@@ -212,11 +214,11 @@
 	},
 	"sources": {
 		"contracts/Ballot/Ballot.sol": {
-			"keccak256": "0xa739dc20d7d4e511ce01a95c53c34ad608db32df8fe9d3408b9fee822bc93d5f",
+			"keccak256": "0x12bd8a5e8d87315a3d1d1e52b58d3f56009f6d44b9e91b9930319e8058517c23",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://bb57ef7ff9e4ee0904ba764d426d10a572eed294df0266487858842b5795fd36",
-				"dweb:/ipfs/QmNg9qt3ph9mTE5v5D9tvqg1A5wFjy3Cxvw9cUnbazEYNz"
+				"bzz-raw://dc890ffbf5a21a73c9f49faaae33dec27f73acddfe9697b0fecadffb8be7c202",
+				"dweb:/ipfs/QmXHmHP4MjoAJ38WoRXwbvPffi4CcxUzoDQiKCypTKCHZ2"
 			]
 		}
 	},
