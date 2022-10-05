@@ -7,6 +7,7 @@ contract MyBallot {
     // STORAGE VARIABLES
 
     struct Voter {
+        string nameVoter;
         bool canVote;
         bool hasVoted;
     }
@@ -18,9 +19,9 @@ contract MyBallot {
 
     address private contractOwner;
 
-    mapping(address => Voter) private voters;
+    mapping(address => Voter) public voters;
 
-    Candidate[] private candidates;
+    Candidate[] public candidates;
 
     uint private totalVotesCounter;
 
@@ -95,7 +96,8 @@ contract MyBallot {
         }
     }
     
-    function giveRightToVote(address voterAddress) public giveRightToVoteModifier(voterAddress) {
+    function giveRightToVote(address voterAddress, string memory _nameVoter) public giveRightToVoteModifier(voterAddress) {
+        voters[voterAddress].nameVoter = _nameVoter;
         voters[voterAddress].canVote = true;
     }
 
@@ -112,32 +114,57 @@ contract MyBallot {
     }
 
     function getWinnerName() public view returns (string memory winnerName, address) {
-        (uint winningProposal, bool isTie) = getWinningCandidate();
+        (uint winningProposal, bool isTie, string memory str) = getWinningCandidate();
+        string memory tieMessage = concatenateStrings("There is a tie on Ballot. You should start a new ballot with tie candidates:", str);
+        
         require(
             !isTie,
-            "There is a tie on Ballot. You should start a new ballot with tie candidates."
+            tieMessage
         );
         winnerName = candidates[winningProposal].nameProject;
         return (winnerName, getContractAddress());
     }
 
-    function getWinningCandidate() private view returns (uint winningProposal, bool isTie) {        
+    function getWinningCandidate() public view returns (uint winningProposal, bool, string memory) {        
         uint winningVoteCount;
 
-        for (uint indexCandidate = 0; indexCandidate < candidates.length; indexCandidate++) {
+        uint candidatesLength = candidates.length;
+        
+        string[] memory tieCandidatesList = new string[](candidatesLength);
+        uint tieCandidatesListIndex;
+        bool isTie = true;
+        string memory tieCandidatesListNames;
+
+        for (uint indexCandidate = 0; indexCandidate < candidatesLength; indexCandidate++) {
             if (candidates[indexCandidate].votesCount > winningVoteCount) {
                 winningVoteCount = candidates[indexCandidate].votesCount;
                 winningProposal = indexCandidate;
-                isTie = false;
+                if (isTie) {
+                    isTie = false;
+                    tieCandidatesListIndex = 0;
+                    tieCandidatesList = new string[](candidatesLength);
+                    tieCandidatesList[tieCandidatesListIndex] = candidates[indexCandidate].nameProject;
+                    tieCandidatesListIndex++;
+                }
             } else if (candidates[indexCandidate].votesCount == winningVoteCount) {
                 isTie = true;
+                tieCandidatesList[tieCandidatesListIndex] = candidates[indexCandidate].nameProject;
+                tieCandidatesListIndex++;
+            }            
+        }
+
+        if (isTie) {
+            for (uint indexCandidate = 0; indexCandidate < tieCandidatesList.length; indexCandidate++) {
+                tieCandidatesListNames = concatenateStrings(tieCandidatesListNames,tieCandidatesList[indexCandidate]);
             }
         }
+
+        return (winningProposal, isTie, tieCandidatesListNames);
     }
 
     function getCandidatesListName() public view returns (string[] memory) {
         uint candidatesLength = candidates.length;
-        string[]  memory candidatesListName = new string[](candidatesLength);
+        string[] memory candidatesListName = new string[](candidatesLength);
         
         for (uint index = 0; index < candidatesLength; index++) {
             candidatesListName[index] = candidates[index].nameProject;
@@ -175,5 +202,13 @@ contract MyBallot {
 
     function stringEqualTo(string memory s1, string memory s2) private pure returns (bool) {
         return keccak256(abi.encode(s1)) == keccak256(abi.encode(s2));
+    }
+
+    // function test(string memory s1, string memory s2) public pure returns (string memory resul) {
+    //     resul = string.concat(s1, s2);
+    // }
+
+    function concatenateStrings(string memory s1, string memory s2) public pure returns (string memory) {
+        return string(abi.encodePacked(s1, " " , s2));
     }
 }
