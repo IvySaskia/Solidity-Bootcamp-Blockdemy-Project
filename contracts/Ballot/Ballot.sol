@@ -53,6 +53,10 @@ contract MyBallot {
             areYouContractOwner(),
             "Only the contract owner can give right to vote."
         );
+        require(
+            !voters[voterAddress].canVote,
+            "Voter have already has right to vote."
+        );
         getVoterVotedRequire(voterAddress);
         _;
     }
@@ -111,6 +115,11 @@ contract MyBallot {
                 totalVotesCounter++;
             }
         }
+
+        require(
+            sender.hasVoted,
+            "Candidate you sent does not exist"
+        );
     }
 
     function getWinnerName() public view returns (string memory winnerName, address) {
