@@ -28,6 +28,7 @@ contract MyBallot {
     uint private maxVotes;
 
 
+
     // CONSTRUCTOR
 
     constructor(string[] memory _candidates, uint _maxVotes) {
@@ -35,6 +36,7 @@ contract MyBallot {
         setCandidatesIntoStorage(_candidates);        
         maxVotes = _maxVotes;
     }
+
 
 
     // MODIFIERS
@@ -72,6 +74,7 @@ contract MyBallot {
     }
 
 
+
     // REQUIRES
 
     function getVoterVotedRequire(address voterAddress) private view {
@@ -94,6 +97,7 @@ contract MyBallot {
             "Candidate you sent does not exist"
         );
     }
+
 
 
     // FUNCTIONS
@@ -216,7 +220,8 @@ contract MyBallot {
     }
 
 
-    // OTHER FUNCTIONS
+
+    // OTHER FUNCTIONS AS UTILS
 
     function stringEqualTo(string memory s1, string memory s2) private pure returns (bool) {
         return keccak256(abi.encode(s1)) == keccak256(abi.encode(s2));
