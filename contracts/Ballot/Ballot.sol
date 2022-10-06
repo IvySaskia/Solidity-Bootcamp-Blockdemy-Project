@@ -32,7 +32,7 @@ contract MyBallot {
 
     // CONSTRUCTOR
 
-    constructor(string[] memory _candidates, uint _maxVotes) {
+    constructor(string[] memory _candidates, uint _maxVotes) constructorModifier(_candidates ,_maxVotes){
         contractOwner = msg.sender;
         setCandidatesIntoStorage(_candidates);        
         maxVotes = _maxVotes;
@@ -62,6 +62,17 @@ contract MyBallot {
         _;        
     }
 
+    modifier getWinnerBallotModifier() {
+        getTotalVotesCounterEqualToMaxVotesRequire();
+        _;
+    }
+
+    modifier constructorModifier(string[] memory _candidates, uint _maxVotes) {
+        getCandidatesLengthIsNotEmptyRequire(_candidates);
+        getMaxVotesMustBeHigherThatZeroRequire(_maxVotes);
+        _;
+    }
+
 
     // REQUIRES
 
@@ -74,7 +85,7 @@ contract MyBallot {
 
     function getTotalVotesCounterReachedRequire() private view {
         return require(
-            totalVotesCounter < maxVotes, 
+            isTotalVotesCounterLessThanMaxVotes(), 
             "Max account votes is reached. Ballot is CLOSED."
         );
     }
@@ -128,6 +139,27 @@ contract MyBallot {
         );
     }
 
+    function getTotalVotesCounterEqualToMaxVotesRequire() private view {
+        return require(
+            isTotalVotesCounterEqualToMaxVotes(),
+            "Ballot is still open. Results will be able to see after Ballot is finished."
+        );
+    }
+
+    function getCandidatesLengthIsNotEmptyRequire(string[] memory _candidates) private pure {
+        return require(
+            _candidates.length > 0,
+            "Candidates list is empty."
+        );
+    }
+
+    function getMaxVotesMustBeHigherThatZeroRequire(uint _maxVotes) private pure {
+        return require(
+            _maxVotes > 0,
+            "Max votes must be higher than 0"
+        );
+    }
+
 
     // LOGIC BALLOT FUNCTIONS
 
@@ -161,7 +193,7 @@ contract MyBallot {
         getCandidateExistRequire(isCandidateExist);
     }
 
-    function getWinnerBallot() public view returns (string memory winnerName, uint amountWinningVotes, address contractAddress) {
+    function getWinnerBallot() public view getWinnerBallotModifier() returns (string memory winnerName, uint amountWinningVotes, address contractAddress){
         (Candidate memory winningCandidate) = getWinnerCandidate();
         winnerName = winningCandidate.nameProject;
         amountWinningVotes = winningCandidate.votesCount;
@@ -242,6 +274,14 @@ contract MyBallot {
 
     function getVoterVoted(address voterAddress) private view returns (bool) {
         return voters[voterAddress].hasVoted;
+    }
+
+    function isTotalVotesCounterLessThanMaxVotes() private view returns (bool){
+        return totalVotesCounter < maxVotes;
+    }
+
+    function isTotalVotesCounterEqualToMaxVotes() private view returns (bool){
+        return totalVotesCounter == maxVotes;
     }
 
 
