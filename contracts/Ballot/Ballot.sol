@@ -23,7 +23,7 @@ contract MyBallot {
 
     mapping(address => Voter) private voters;
 
-    Candidate[] public candidates;
+    Candidate[] private candidates;
 
     uint private totalVotesCounter;
 
@@ -49,6 +49,7 @@ contract MyBallot {
     modifier giveRightToVoteModifier(address voterAddress) {
         getTotalVotesCounterReachedRequire();
         getYouContractOwnerRequire();
+        getContractOwnerCanNotVoteRequire(voterAddress);
         getRightToVoteRequire(voterAddress);
         getVoterVotedRequire(voterAddress);
         _;
@@ -56,6 +57,7 @@ contract MyBallot {
 
     modifier voteModifierBefore(address voterAddress) {
         getTotalVotesCounterReachedRequire();
+        getContractOwnerCanNotVoteRequire(voterAddress);
         getVoterVotedRequire(voterAddress);
         _;        
     }
@@ -119,8 +121,15 @@ contract MyBallot {
         );
     }
 
+    function getContractOwnerCanNotVoteRequire(address voterAddress) private view {
+        return require(
+            voterAddress != contractOwner,
+            "Contract owner can not vote."
+        );
+    }
 
-    // FUNCTIONS
+
+    // LOGIC BALLOT FUNCTIONS
 
     function setCandidatesIntoStorage(string[] memory _candidates) private {
         for (uint index = 0; index < _candidates.length; index++) {
