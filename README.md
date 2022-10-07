@@ -168,6 +168,8 @@ See the [open issues](https://github.com/IvySaskia/Solidity-Bootcamp-Blockdemy-P
 <!-- TEAM -->
 ## Team
 
+Made with 💜 by
+
 👩🏽‍💻 **Ivy Saskia Sejas Rocabado**
 - GitHub: [@IvySaskia](https://github.com/IvySaskia)
 
