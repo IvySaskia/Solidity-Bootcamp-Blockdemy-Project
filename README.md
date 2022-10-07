@@ -14,10 +14,10 @@
 ![Solidit Bootcamp WE3 Latinas](https://pbs.twimg.com/media/FcBpiw3X0AEoMxi.jpg)
   
 
-<h3 align="center">DEMOCRATIZANDO PROYECTOS</h3>
+<h3 align="center"><strong>DEMOCRATIZANDO PROYECTOS</strong></h3>
 
   <p align="center">
-  This is the repository of the final project of **Solidity Bootcamp of Blockdemy** of **TEAM 13**
+  This is the repository of the final project of <strong>Solidity Bootcamp of Blockdemy</strong> of <strong>TEAM 13</strong>
   
   A smart contract that allows voting on projects to be carried out in a community, giving the population the opportunity to vote for what they want and need in their community.
     <br />
@@ -164,17 +164,10 @@ See the [open issues](https://github.com/IvySaskia/Solidity-Bootcamp-Blockdemy-P
 
 
 
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/IvySaskia/Solidity-Bootcamp-Blockdemy-Project.svg?style=for-the-badge
-[contributors-url]: https://github.com/IvySaskia/Solidity-Bootcamp-Blockdemy-Project/graphs/contributors
-
-
-
 <!-- TEAM -->
 ## Team
 
-👩🏽‍💻 **Ivy Rocabado**
+👩🏽‍💻 **Ivy Saskia Sejas Rocabado**
 - GitHub: [@IvySaskia](https://github.com/IvySaskia)
 
 👩🏽‍💻 **Camila Adaes**
@@ -202,3 +195,10 @@ Don't forget to give the project a star! Thanks again!
 5. Open a Pull Request
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/IvySaskia/Solidity-Bootcamp-Blockdemy-Project.svg?style=for-the-badge
+[contributors-url]: https://github.com/IvySaskia/Solidity-Bootcamp-Blockdemy-Project/graphs/contributors
