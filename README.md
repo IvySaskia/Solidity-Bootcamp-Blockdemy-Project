@@ -164,8 +164,14 @@ See the [open issues](https://github.com/IvySaskia/Solidity-Bootcamp-Blockdemy-P
 
 
 
-<!-- TEAM -->
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/IvySaskia/Solidity-Bootcamp-Blockdemy-Project.svg?style=for-the-badge
+[contributors-url]: https://github.com/IvySaskia/Solidity-Bootcamp-Blockdemy-Project/graphs/contributors
 
+
+
+<!-- TEAM -->
 ## Team
 
 👩🏽‍💻 **Ivy Rocabado**
