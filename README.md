@@ -26,7 +26,7 @@
 🗂 [Our presentation](https://www.canva.com/design/DAFOIenb5dA/gLR2nrPZJ_7cVYKVmrhgLg/view?utm_content=DAFOIenb5dA&utm_campaign=designshare&utm_medium=link&utm_source=publishpresent)
     <br />
     <br />
-    <a href="https://github.com/IvySaskia/Solidity-Bootcamp-Blockdemy-Project">View Smart Contract</a>
+    <a href="https://goerli.etherscan.io/address/0xB9Eb7227c839D3832cb8a2465666B1CF552954B3">View Smart Contract</a>
     ·
     <a href="https://github.com/IvySaskia/Solidity-Bootcamp-Blockdemy-Project/issues">Report Bug</a>
     ·
