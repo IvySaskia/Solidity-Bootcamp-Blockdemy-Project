@@ -82,6 +82,8 @@ We propose to carry out a voting system focused on the proposals without reveali
 2. Ability to view voting records on the blockchain ensuring that the final result has not been tampered with.
 3. Ability to guarantee that the vote will be focused on making the decision based on the value of the projects since the smart contract contains this rule.
 
+Examples of list of projects: "Proyecto Escuela","Proyecto Hospital","Proyecto Cancha de futbol","Proyecto Cursos a jóvenes","Proyecto Apoyo a Madres solteras"
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
