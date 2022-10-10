@@ -82,8 +82,6 @@ We propose to carry out a voting system focused on the proposals without reveali
 2. Ability to view voting records on the blockchain ensuring that the final result has not been tampered with.
 3. Ability to guarantee that the vote will be focused on making the decision based on the value of the projects since the smart contract contains this rule.
 
-Examples of list of projects: "Proyecto Escuela","Proyecto Hospital","Proyecto Cancha de futbol","Proyecto Cursos a jóvenes","Proyecto Apoyo a Madres solteras"
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -133,7 +131,22 @@ Open [REMIX.Ethereum](https://remix.ethereum.org/)
 
 ## Usage
 
-// TBD
+0xB9Eb7227c839D3832cb8a2465666B1CF552954B3
+
+Examples of list of projects: "Proyecto Escuela","Proyecto Hospital","Proyecto Cancha de futbol","Proyecto Cursos a jóvenes","Proyecto Apoyo a Madres solteras"
+Max votes : 3
+
+![image](https://user-images.githubusercontent.com/41027286/194960761-752e9e71-10ef-48f1-a115-e7b3fec0257a.png)
+
+![image](https://user-images.githubusercontent.com/41027286/194960858-23721312-0dcf-4c8e-bedd-26dda5922b38.png)
+
+![image](https://user-images.githubusercontent.com/41027286/194960818-3488e033-6bf9-4143-b323-16c91fbfecc1.png)
+
+![image](https://user-images.githubusercontent.com/41027286/194960919-f653bd93-16e7-4ace-a06e-0180f6238e6c.png)
+
+![image](https://user-images.githubusercontent.com/41027286/194961212-63c84c83-67de-48e9-ba1e-6299004716ed.png)
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
