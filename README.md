@@ -2,10 +2,6 @@
 
 
 
-[![Contributors][contributors-shield]][contributors-url]
-
-
-
 <!-- PROJECT LOGO -->
 
 <br />
